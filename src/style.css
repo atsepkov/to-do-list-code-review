@@ -96,4 +96,15 @@ select:focus {
   justify-content: center;
   padding: 1.25rem;
   background-color: #f3f1f1;
+  cursor: pointer;
+}
+
+.hover {
+  color: green;
+  cursor: pointer;
+}
+
+.delHover {
+  color: red;
+  cursor: pointer;
 }
