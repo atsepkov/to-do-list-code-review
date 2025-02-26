@@ -1,7 +1,7 @@
 export default class NewToDos {
-    static reset = (element) => {
-      element.innerHTML = '';
-    };
+  static reset = (element) => {
+    element.innerHTML = '';
+  };
 
   static displayTask = (parent, task) => {
     const taskDiv = NewToDos.createHtml(parent, 'div', 'task');
@@ -27,11 +27,11 @@ export default class NewToDos {
     i.dataset.id = task.index;
   };
 
-    static createHtml = (parent, tag, className, content = null) => {
-      const element = document.createElement(tag);
-      element.className = className;
-      element.innerHTML = content;
-      parent.appendChild(element);
-      return element;
-    };
+  static createHtml = (parent, tag, className, content = null) => {
+    const element = document.createElement(tag);
+    element.className = className;
+    element.innerHTML = content;
+    parent.appendChild(element);
+    return element;
+  };
 }

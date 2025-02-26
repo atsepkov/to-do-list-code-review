@@ -2,11 +2,20 @@
 import './style.css';
 import ToDos from './modules/todos.js';
 import NewToDos from './modules/display.js';
+import { add } from 'lodash';
 
 const selector = (element) => document.querySelector(element);
 const selectorAll = (element) => document.querySelectorAll(element);
-const input = selector('input');
+const input = selector('#todo-input');
+const addBtn = selector('.fa-level-down-alt');
 const newTodo = new ToDos();
+
+addBtn.addEventListener('mouseover', () => {
+  addBtn.classList.add('hover');
+})
+addBtn.addEventListener('mouseout', () => {
+  addBtn.classList.remove('hover');
+})
 
 const updateTodo = (event, index, focus = false) => {
   if (event.key === 'Enter' || focus) {
@@ -61,11 +70,23 @@ const deleteTodo = (index) => {
 };
 
 const createTodo = () => {
+  if (input.value === '') {
+    alert("Can't create an empty task");
+  }
+
   const todo = newTodo.addTodo(input.value);
+
   NewToDos.displayTask(selector('.display'), todo);
   input.value = '';
 
-  selector(`#task_${todo.index}`).addEventListener('click', () => {
+  const delBtn = selector(`#task_${todo.index}`)
+  delBtn.addEventListener('mouseover', () => {
+    delBtn.classList.add('delHover');
+  })
+  delBtn.addEventListener('mouseout', () => {
+    delBtn.classList.remove('delHover');
+  })
+  delBtn.addEventListener('click', () => {
     deleteTodo(todo.index);
   });
 
@@ -84,7 +105,8 @@ const createTodo = () => {
     updateStatus(todo.index);
   });
 
-  selector(`#input_task_${todo.index}`).focus();
+  // selector(`#input_task_${todo.index}`).focus();
+  input.focus();
 };
 
 selector('.clear').addEventListener('click', () => {
